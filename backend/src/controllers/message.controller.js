@@ -42,14 +42,14 @@ export const sendMessage = async (req, res) => {
         const senderId = req.user._id;
 
         if (!text && !image) {
-            return res.status(400).json({message:"Text or image is required."})
+            return res.status(400).json({ message: "Text or image is required." })
         }
-        if(senderId.equals(receiverID)) {
-            return res.status(400).json({message:"Cannot send messages to yourself."})
+        if (senderId.equals(receiverId)) {
+            return res.status(400).json({ message: "Cannot send messages to yourself." })
         }
-        const receiverExists = await User.exists({ _id: receiverId});
+        const receiverExists = await User.exists({ _id: receiverId });
         if (!receiverExists) {
-            return res.status(404).json({message:"Receiver not found."})
+            return res.status(404).json({ message: "Receiver not found." })
         }
 
         let imageUrl;
@@ -90,14 +90,14 @@ export const getChatPartners = async (req, res) => {
         const getChatPartnerIds = [
             ...new Set(messages.map(msg => msg.senderId.toString() === loggedInUserId.toString() ? msg.receiverId.toString() : msg.senderId.toString()
             )
-        )
-    ];
+            )
+        ];
 
-    const chatPartners = await User.find({_id: {$in:getChatPartnerIds}}).select("-password")
-    
-    res.status(200).json(chatPartners);
+        const chatPartners = await User.find({ _id: { $in: getChatPartnerIds } }).select("-password")
+
+        res.status(200).json(chatPartners);
     } catch (error) {
         console.error("Error in getChatPartners: ", error.message);
-        res.status(500).json({error: "Internal server error"});
+        res.status(500).json({ error: "Internal server error" });
     }
 };

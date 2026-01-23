@@ -16,7 +16,7 @@ const PORT = ENV.PORT || 3000;
 
 
 //payload too large error (fix by adding limit parameter)
-app.use(express.json()) // req.body
+app.use(express.json({ limit: "5mb" })) // req.body
 app.use(cors({ origin: ENV.CLIENT_URL, credentials: true }))
 app.use(cookieParser())
 
