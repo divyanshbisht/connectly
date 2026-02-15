@@ -1,5 +1,5 @@
 {
-  "name": "chatapp",
+  "name": "connectly",
   "version": "1.0.0",
   "main": "index.js",
   "engines": {
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/divyanshbisht/chatapp.git"
+    "url": "git+https://github.com/divyanshbisht/connectly.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/divyanshbisht/chatapp/issues"
+    "url": "https://github.com/divyanshbisht/connectly/issues"
   },
-  "homepage": "https://github.com/divyanshbisht/chatapp#readme",
+  "homepage": "https://github.com/divyanshbisht/connectly#readme",
   "description": ""
 }
