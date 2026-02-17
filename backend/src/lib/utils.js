@@ -6,15 +6,16 @@ export const generateToken = (userId, res) => {
     if (!JWT_SECRET) {
         throw new Error("JWT_SECRET is not configured");
     }
-    
-    const token = jwt.sign({userId}, ENV.JWT_SECRET,{
+
+    const token = jwt.sign({ userId }, ENV.JWT_SECRET, {
         expiresIn: "7d",
     })
 
     res.cookie("jwt", token, {
-        maxAge: 7*24*60*60*1000, // miliseconds for 7 days
+        maxAge: 7 * 24 * 60 * 60 * 1000, // miliseconds for 7 days
         httpOnly: true, //prevent XSS attacks: cross-site scripting
-        sameSite: "strict", // prevent CSRF attacks
+        // sameSite: "strict", // prevent CSRF attacks
+        sameSite: "none", // for cross-site cookies (frontend and backend on different domains)
         secure: ENV.NODE_ENV === "development" ? false : true,
     })
 
